@@ -2,6 +2,7 @@ package com.patal;
 
 import com.patal.dbconnector.DBConnector;
 import com.patal.dbstruct.User;
+import com.patal.logicdbstruct.UsersList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +15,8 @@ import java.util.List;
 @WebServlet(name = "LogIn")
 public class LogIn extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<User> temp = DBConnector.getUsers();
-        System.out.println(temp.get(0));
+        UsersList temp = DBConnector.getUsers();
+        System.out.println(temp.searchByUsername("asdas"));
         String url = "/Hello.jsp";
         String userName = request.getParameter("name");
         request.setAttribute("userName", userName);

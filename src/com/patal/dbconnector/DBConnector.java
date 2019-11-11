@@ -1,6 +1,7 @@
 package com.patal.dbconnector;
 
 import com.patal.dbstruct.User;
+import com.patal.logicdbstruct.UsersList;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class DBConnector {
         }
     }
 
-    public static List<User> getUsers() {
+    public static UsersList getUsers() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -68,6 +69,7 @@ public class DBConnector {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return usersList;
+
+        return new UsersList(usersList);
     }
 }
