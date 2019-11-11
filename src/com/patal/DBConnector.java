@@ -21,7 +21,6 @@ public class DBConnector {
 
             ResultSet rs = stmt.executeQuery(sql);
 
-//            System.out.println(rs.getString("fName"));
             while (rs.next())
                 System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
 
@@ -29,5 +28,17 @@ public class DBConnector {
         } catch (SQLException  e) {
             e.printStackTrace();
         }
+    }
+    public static ResultSet getSQL(String sql){
+        ResultSet rs = null;
+        try {
+            Statement stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+            con.close();
+            return rs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
     }
 }
