@@ -16,15 +16,18 @@ import java.util.List;
 public class LogIn extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UsersList temp = DBConnector.getUsers();
-        System.out.println(temp.searchByUsername("asdas"));
-        String url = "/Hello.jsp";
-        String userName = request.getParameter("name");
-        request.setAttribute("userName", userName);
+      //  System.out.println(temp.searchByUsername("asdas"));
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        User userFind = temp.searchByUsername(login).get(0);
+        if(password.equals(userFind.getPassword())){
+            request.setAttribute("login", login);
+            String url = "/Hello.jsp";
         try {
             getServletContext().getRequestDispatcher(url).forward(request, response);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }}
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
