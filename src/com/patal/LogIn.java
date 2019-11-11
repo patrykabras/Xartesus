@@ -1,22 +1,21 @@
 package com.patal;
 
+import com.patal.dbconnector.DBConnector;
+import com.patal.dbstruct.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.*;
+import java.util.List;
 
 @WebServlet(name = "LogIn")
 public class LogIn extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        DBConnector.sendSQL("select * from users");
+        List<User> temp = DBConnector.getUsers();
+        System.out.println(temp.get(0));
         String url = "/Hello.jsp";
         String userName = request.getParameter("name");
         request.setAttribute("userName", userName);
