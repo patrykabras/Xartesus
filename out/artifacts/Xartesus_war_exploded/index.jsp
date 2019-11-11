@@ -12,9 +12,11 @@
   </head>
   <body>
     <form action="LogIn" method="post">
-      <label>Name: </label>
-      <input type="text" name="name"><br />
-      <input type="submit" value="SEND">
+      <label>Login: </label>
+      <input type="text" name="login"><br />
+      <label>Password: </label>
+      <input type="password" name="password"><br />
+      <input type="submit" value="Log in">
     </form>
   </body>
 </html>
