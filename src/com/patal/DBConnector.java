@@ -9,8 +9,7 @@ public class DBConnector {
     public DBConnector() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(url, user, password);
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -32,6 +31,7 @@ public class DBConnector {
     public static ResultSet getSQL(String sql){
         ResultSet rs = null;
         try {
+            con = DriverManager.getConnection(url, user, password);
             Statement stmt = con.createStatement();
             rs = stmt.executeQuery(sql);
             con.close();
