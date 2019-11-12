@@ -16,5 +16,8 @@
       <input type="text" name="name"><br />
       <input type="submit" value="SEND">
     </form>
+    <form action="ProductManagment" method="post">
+      <input type="submit" value="GO TO ADMIN">
+    </form>
   </body>
 </html>

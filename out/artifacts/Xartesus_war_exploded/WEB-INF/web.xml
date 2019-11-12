@@ -7,8 +7,16 @@
             <servlet-name>LogIn</servlet-name>
             <servlet-class>com.patal.LogIn</servlet-class>
         </servlet>
+    <servlet>
+        <servlet-name>ProductManagment</servlet-name>
+        <servlet-class>com.patal.productmanagement.ProductManagment</servlet-class>
+    </servlet>
         <servlet-mapping>
             <servlet-name>LogIn</servlet-name>
             <url-pattern>/LogIn</url-pattern>
         </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductManagment</servlet-name>
+        <url-pattern>/ProductManagment</url-pattern>
+    </servlet-mapping>
 </web-app>
