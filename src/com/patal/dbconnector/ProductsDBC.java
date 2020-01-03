@@ -25,9 +25,9 @@ class ProductsDBC {
                  String producer = getProdcuer(rs.getInt("id_producer"));
                  String publisher = getPublisher(rs.getInt("id_publisher"));
                  String pegi = getPegi(rs.getInt("id_pegi"));
-                 String graphic = getGraphics(rs.getInt("id_graphic"));
-                 Date releaseDate = rs.getDate("relase_date");
-                 Blob picture = rs.getBlob("picture");
+                 String graphic = getGraphics(rs.getInt("id_graphics"));
+                 Date releaseDate = rs.getDate("release_date");
+                 String picture = rs.getString("picture");
                  List<String> genres = getGenres(idProduct + "");
                  List<String> types = getTypes(idProduct + "");
                  Product temp = new Product(idProduct,name,producer,publisher,pegi,graphic,releaseDate,picture,genres,types);
@@ -44,7 +44,7 @@ class ProductsDBC {
         String producer = "";
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT name from products WHERE id_producer = "+index);
+            ResultSet rs = stmt.executeQuery("SELECT name from producer WHERE id_producer = "+index);
             while(rs.next()){
                 producer = rs.getString("name");
             }
@@ -102,7 +102,7 @@ class ProductsDBC {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT genre.name from genre,genre_product WHERE genre_product.id_product = "+index+" AND genre_product.id_genre = genre.id_genre");
             while(rs.next()){
-                genres.add(rs.getString(0));
+                genres.add(rs.getString(1));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -115,7 +115,7 @@ class ProductsDBC {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT type.name from type,type_product WHERE type_product.id_product = "+index+" AND type_product.id_type = type.id_type");
             while(rs.next()){
-                types.add(rs.getString(0));
+                types.add(rs.getString(1));
             }
         } catch (SQLException e) {
             e.printStackTrace();

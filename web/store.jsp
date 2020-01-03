@@ -9,15 +9,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Xartesus</title>
+    <title>Xartesus - Store</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
     <link href="img/css/all.css" rel="stylesheet"/>
     <style>
         body {
             background: radial-gradient(circle, rgb(38, 48, 97), rgb(76, 135, 212));
         }
-
+        .back-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 200;
+        }
         .no-btn-syle {
             background: none;
             color: inherit;
@@ -35,9 +42,27 @@
             }
         }
     %>
+    <script>
+        $(document).ready(function(){
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 50) {
+                    $('#back-to-top').fadeIn();
+                } else {
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            // scroll body to 0px on click
+            $('#back-to-top').click(function () {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 400);
+                return false;
+            });
+        });
+    </script>
 </head>
 <body>
-
+<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
 
 <div class="container-fluid">
     <div class="row mt-3 ">
@@ -120,7 +145,80 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xl my-3">
+        <div class="col my-3">
+            <div class="d-flex flex-wrap justify-content-center bg-light p-4">
+                <h1>Filter:</h1>
+                <form action="Filter" method="get" id="filter">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputPriceFrom">Price:</label>
+                            <input type="number" class="form-control" id="inputPriceFrom" placeholder="from:">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPriceTo"> 	&nbsp; </label>
+                            <input type="number" class="form-control" id="inputPriceTo"  placeholder="to:">
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Type</label>
+                        <select name="type" id="type" class="form-control selectpicker" data-live-search="true" multiple
+                                required>
+                                <option value="1">Type-1</option>
+                                <option value="2">Type-2</option>
+                                <option value="3">Type-3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="genre">Genre</label>
+                        <select name="type" id="genre" class="form-control selectpicker" data-live-search="true" multiple
+                                required>
+                            <option value="1">Genre-1</option>
+                            <option value="2">Genre-2</option>
+                            <option value="3">Genre-3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="graphics">Graphics</label>
+                        <select name="type" id="graphics" class="form-control selectpicker" data-live-search="true" multiple
+                                required>
+                            <option value="1">Graphics-1</option>
+                            <option value="2">Graphics-2</option>
+                            <option value="3">Graphics-3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="pegi">Pegi</label>
+                        <select name="type" id="pegi" class="form-control selectpicker" data-live-search="true" multiple
+                                required>
+                            <option value="1">Pegi-1</option>
+                            <option value="2">Pegi-2</option>
+                            <option value="3">Pegi-3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="producer">Producer</label>
+                        <select name="type" id="producer" class="form-control selectpicker" data-live-search="true" multiple
+                                required>
+                            <option value="1">Producer-1</option>
+                            <option value="2">Producer-2</option>
+                            <option value="3">Producer-3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="publisher">Publisher</label>
+                        <select name="type" id="publisher" class="form-control selectpicker" data-live-search="true" multiple
+                                required>
+                            <option value="1">Publisher-1</option>
+                            <option value="2">Publisher-2</option>
+                            <option value="3">Publisher-3</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Use filter</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-9 my-3 mr-3 py-2 bg-light">
             <form action="ProductInfo" method="get">
                 <div class="d-flex flex-wrap justify-content-center">
                     <c:forEach items="${warehouseList.getWarehouseItemsList()}" var="warehouseItem">
@@ -137,6 +235,7 @@
                             </div>
                         </c:if>
                     </c:forEach>
+
                 </div>
             </form>
         </div>
@@ -225,6 +324,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 <%-- JS Scripts ---%>
 
 

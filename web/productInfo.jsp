@@ -9,13 +9,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Xartesus</title>
+    <title>Xartesus - Product info</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="img/css/all.css" rel="stylesheet"/>
     <style>
         body {
             background: radial-gradient(circle, rgb(38, 48, 97), rgb(76, 135, 212));
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 200;
         }
 
         .no-btn-syle {
@@ -35,9 +42,28 @@
             }
         }
     %>
+    <script>
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 50) {
+                    $('#back-to-top').fadeIn();
+                } else {
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            // scroll body to 0px on click
+            $('#back-to-top').click(function () {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 400);
+                return false;
+            });
+        });
+    </script>
 </head>
 <body>
-
+<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i
+        class="fas fa-chevron-up"></i></a>
 
 <div class="container-fluid">
     <div class="row mt-3 ">
@@ -121,24 +147,23 @@
     </div>
     <div class="row">
         <div class="col-xl my-3">
-            <form action="ProductInfo" method="get">
-                <div class="d-flex flex-wrap justify-content-center">
-                    <c:forEach items="${warehouseList.getWarehouseItemsList()}" var="warehouseItem">
-                        <c:set var="isSold" value="${warehouseItem.isIs_sold()}"></c:set>
-                        <c:if test="${!isSold}">
-                            <div class="card rounded float-left m-2" style="width: 17rem;">
-                                <img src="img/${warehouseItem.getProduct().getPicture()}" class="card-img-top"
-                                     alt="...">
-                                <h4 class="card-title">${warehouseItem.getProduct().getName()}</h4>
-                                <p class="card-text text-right">${warehouseItem.getPrice()} zł</p>
-                                <button class="btn btn-primary" type="submit"
-                                        value="${warehouseItem.getId()}" name="warehouseID">See product
-                                </button>
-                            </div>
-                        </c:if>
-                    </c:forEach>
-                </div>
-            </form>
+            <div class="d-flex flex-wrap justify-content-center">
+                <c:set var="product" value="${warehouseItem.getProduct()}"></c:set>
+                <img src="img/${product.getPicture()}">
+                <h1>${product.getName()}</h1>
+                <h2>${warehouseItem.getId()}</h2>
+                <h2>${warehouseItem.getPrice()}</h2>
+                <h2>${product.getProducer()}</h2>
+                <h2>${product.getPublisher()}</h2>
+                <h2>${product.getPegi()}</h2>
+                <h2>${product.getGraphic()}</h2>
+                <h2>${product.getReleaseDate()}</h2>
+                <h2>${product.getGenres()}</h2>
+                <h2>${product.getTypes()}</h2>
+                <form action="GoBackToIndex" method="get">
+                    <button type="submit" class="btn btn-primary">Go to index</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

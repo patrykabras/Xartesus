@@ -2,6 +2,7 @@ package com.patal.productmanagement;
 
 import com.patal.dbconnector.DBConnector;
 import com.patal.logicdbstruct.ProductList;
+import com.patal.warehousemanagment.Warehouse;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ public class ProductManagment extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ProductList productList = DBConnector.getProducts();
+        Warehouse warehouseList = DBConnector.getWarehouse();
         HashMap<Integer, String> genre = DBConnector.getGenre();
         HashMap<Integer, String> graphics = DBConnector.getGraphics();
         HashMap<Integer, String> pegi = DBConnector.getPegi();
@@ -25,12 +27,15 @@ public class ProductManagment extends HttpServlet {
 
         String url = "/ProductManagement.jsp";
         request.setAttribute("productList", productList);
+        request.setAttribute("warehouseList", warehouseList);
         request.setAttribute("genre", genre);
         request.setAttribute("graphics", graphics);
         request.setAttribute("pegi", pegi);
         request.setAttribute("producer", producer);
         request.setAttribute("publisher", publisher);
         request.setAttribute("type", type);
+
+
 
         try {
             getServletContext().getRequestDispatcher(url).forward(request, response);

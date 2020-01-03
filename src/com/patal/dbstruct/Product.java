@@ -11,11 +11,11 @@ public class Product {
     private String pegi;
     private String graphic;
     private Date releaseDate;
-    private Blob picture;
+    private String picture;
     private List<String> genres;
     private List<String> types;
 
-    public Product(int idProduct, String name, String producer, String publisher, String pegi, String graphic, Date releaseDate, Blob picture, List<String> genres, List<String> types) {
+    public Product(int idProduct, String name, String producer, String publisher, String pegi, String graphic, Date releaseDate, String picture, List<String> genres, List<String> types) {
         this.idProduct = idProduct;
         this.name = name;
         this.producer = producer;
@@ -84,11 +84,11 @@ public class Product {
         this.releaseDate = releaseDate;
     }
 
-    public Blob getPicture() {
+    public String getPicture() {
         return picture;
     }
 
-    public void setPicture(Blob picture) {
+    public void setPicture(String picture) {
         this.picture = picture;
     }
 

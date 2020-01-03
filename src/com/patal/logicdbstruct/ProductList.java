@@ -2,12 +2,25 @@ package com.patal.logicdbstruct;
 
 import com.patal.dbstruct.Product;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductList {
-    private List<Product> usersList;
+    private List<Product> productList;
 
-    public ProductList(List<Product> usersList) {
-        this.usersList = usersList;
+    public ProductList(List<Product> productList) {
+        this.productList = productList;
+    }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
+    }
+    public List<Product> searchByID(String phrase){
+        return productList.stream().filter(product -> phrase.equals(product.getIdProduct() +"")).collect(Collectors.toList());
     }
 }
