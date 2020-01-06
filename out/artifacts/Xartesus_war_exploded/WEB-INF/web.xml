@@ -77,6 +77,10 @@
         <servlet-name>Store</servlet-name>
         <servlet-class>com.patal.store.Store</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddToCart</servlet-name>
+        <servlet-class>com.patal.store.AddToCart</servlet-class>
+    </servlet>
 
     <!--    mapping   -->
     <servlet-mapping>
@@ -142,5 +146,9 @@
     <servlet-mapping>
         <servlet-name>Store</servlet-name>
         <url-pattern>/Store</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCart</servlet-name>
+        <url-pattern>/AddToCart</url-pattern>
     </servlet-mapping>
 </web-app>

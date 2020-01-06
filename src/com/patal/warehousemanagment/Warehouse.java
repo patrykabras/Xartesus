@@ -22,23 +22,40 @@ public class Warehouse {
     public void setWarehouseItemsList(ArrayList<WarehouseItem> warehouseItemsList) {
         this.warehouseItemsList = warehouseItemsList;
     }
-    public List<WarehouseItem> searchByID(String phrase){
-        return warehouseItemsList.stream().filter(warehouseItem -> phrase.equals(warehouseItem.getId() +"")).collect(Collectors.toList());
+
+    public List<WarehouseItem> searchByID(String phrase) {
+        return warehouseItemsList.stream().filter(warehouseItem -> phrase.equals(warehouseItem.getId() + "")).collect(Collectors.toList());
     }
 
-//    https://stackoverflow.com/questions/8115722/generating-unique-random-numbers-in-java
-    public ArrayList<WarehouseItem> getRandomItems(int howMuch){
+    public List<WarehouseItem> searchByProductId(String phrase) {
+        return warehouseItemsList.stream().filter(warehouseItem -> phrase.equals(warehouseItem.getProduct().getIdProduct() + "")).collect(Collectors.toList());
+    }
+
+    public ArrayList<WarehouseProduct> getWarehouseProducts(String id) {
+        ArrayList<WarehouseItem> warehouseItemList = (ArrayList<WarehouseItem>) searchByProductId(id);
+        ArrayList<WarehouseProduct> productArrayList = new ArrayList<>(1);
+        for (WarehouseItem item : warehouseItemList) {
+            if (!item.isIs_sold()) {
+                productArrayList.add(new WarehouseProduct(item.getId(), item.getProduct(), item.getPrice()));
+            }
+        }
+
+        return productArrayList;
+    }
+
+    //    https://stackoverflow.com/questions/8115722/generating-unique-random-numbers-in-java
+    public ArrayList<WarehouseItem> getRandomItems(int howMuch) {
         ArrayList<WarehouseItem> randomItems = new ArrayList<>(0);
         int currentSize = warehouseItemsList.size();
-        if(currentSize <= howMuch){
+        if (currentSize <= howMuch) {
             randomItems = warehouseItemsList;
-        }else{
+        } else {
             ArrayList<Integer> list = new ArrayList<Integer>();
-            for (int i=0; i<currentSize; i++) {
+            for (int i = 0; i < currentSize; i++) {
                 list.add(i);
             }
             Collections.shuffle(list);
-            for (int i=0; i<howMuch; i++) {
+            for (int i = 0; i < howMuch; i++) {
                 randomItems.add(warehouseItemsList.get(list.get(i)));
             }
         }
