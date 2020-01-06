@@ -110,11 +110,39 @@ public class DBConnector {
         return temp;
     }
 
-    public static void setUser(String name,String surname,String login,String birth_date,String email,String password) {
+    public static void setPolling(String idUser, String[] genreIds, String[] graphicsIds, String[] typeIds) {
         classforname();
         try {
             Statement stmt = con.createStatement();
-//            stmt.executeUpdate("INSERT INTO `users` (`id_users`, `usertype`, `name`, `surname`, `birth_date`, `login`, `mail`, `password`) VALUES (NULL, '0',name,surname,birth_date,login,email,password);");
+            stmt.executeUpdate("DELETE FROM `genre_polling` WHERE `id_user`="+idUser+"");
+            for (String id : genreIds) {
+                stmt = con.createStatement();
+                stmt.executeUpdate("INSERT INTO `genre_polling` (`id_genre_polling`, `id_user`, `id_genre`) VALUES (NULL, '" + idUser + "','" + id + "');");
+            }
+            stmt.executeUpdate("DELETE FROM `graphics_polling` WHERE `id_user`="+idUser+"");
+            for (String id : graphicsIds) {
+                stmt = con.createStatement();
+                stmt.executeUpdate("INSERT INTO `graphics_polling` (`id_graphics_polling`, `id_user`, `id_graphics`) VALUES (NULL, '" + idUser + "','" + id + "');");
+            }
+            stmt.executeUpdate("DELETE FROM `type_polling` WHERE `id_user`="+idUser+"");
+            for (String id : typeIds) {
+                stmt = con.createStatement();
+                stmt.executeUpdate("INSERT INTO `type_polling` (`id_type_polling`, `id_user`, `id_type`) VALUES (NULL, '" + idUser + "','" + id + "');");
+            }
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void getPolling() {
+
+    }
+
+    public static void setUser(String name, String surname, String login, String birth_date, String email, String password) {
+        classforname();
+        try {
+            Statement stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO `users` (`id_users`, `usertype`, `name`, `surname`, `birth_date`, `login`, `mail`, `password`) VALUES (NULL, '1','" + name + "','" + surname + "','" + birth_date + "','" + login + "','" + email + "','" + password + "');");
             con.close();
         } catch (SQLException e) {

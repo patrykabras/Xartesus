@@ -85,6 +85,14 @@
         <servlet-name>RegisterForm</servlet-name>
         <servlet-class>com.patal.register.RegisterForm</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Profile</servlet-name>
+        <servlet-class>com.patal.profile.Profile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Polling</servlet-name>
+        <servlet-class>com.patal.profile.Polling</servlet-class>
+    </servlet>
 
     <!--    mapping   -->
     <servlet-mapping>
@@ -158,5 +166,13 @@
     <servlet-mapping>
         <servlet-name>RegisterForm</servlet-name>
         <url-pattern>/RegisterForm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Profile</servlet-name>
+        <url-pattern>/Profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Polling</servlet-name>
+        <url-pattern>/Polling</url-pattern>
     </servlet-mapping>
 </web-app>

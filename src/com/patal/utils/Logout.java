@@ -11,10 +11,12 @@ public class Logout extends HttpServlet {
         response.setContentType("text/html");
         Cookie loginCookie = null;
         Cookie roleCookie = null;
+        Cookie idCookie = null;
         Cookie[] cookies = request.getCookies();
         HttpSession session = request.getSession();
         session.removeAttribute("user");
         session.removeAttribute("role");
+        session.removeAttribute("id");
         if(cookies != null){
             for(Cookie cookie : cookies){
                 if(cookie.getName().equals("user")){
@@ -23,6 +25,10 @@ public class Logout extends HttpServlet {
                 }
                 if(cookie.getName().equals("role")){
                     roleCookie = cookie;
+                    break;
+                }
+                if(cookie.getName().equals("id")){
+                    idCookie = cookie;
                     break;
                 }
             }
@@ -34,6 +40,10 @@ public class Logout extends HttpServlet {
         if(roleCookie != null){
             roleCookie.setMaxAge(0);
             response.addCookie(roleCookie);
+        }
+        if(idCookie != null){
+            idCookie.setMaxAge(0);
+            response.addCookie(idCookie);
         }
         response.sendRedirect(request.getContextPath() + "/index");
     }
