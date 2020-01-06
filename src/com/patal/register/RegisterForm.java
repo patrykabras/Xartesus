@@ -20,6 +20,7 @@ public class RegisterForm extends HttpServlet {
         String password = request.getParameter("password");
 
         DBConnector.setUser(name,surname,login,birth_date,email,password);
+        response.sendRedirect(request.getContextPath() + "");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
