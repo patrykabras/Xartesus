@@ -81,6 +81,10 @@
         <servlet-name>Register</servlet-name>
         <servlet-class>com.patal.register.Register</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterForm</servlet-name>
+        <servlet-class>com.patal.register.RegisterForm</servlet-class>
+    </servlet>
 
     <!--    mapping   -->
     <servlet-mapping>
@@ -150,5 +154,9 @@
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterForm</servlet-name>
+        <url-pattern>/RegisterForm</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -149,53 +149,46 @@
         <div class="col-xl my-3">
             <div class="d-flex flex-wrap justify-content-center">
                 <div class="card">
-                    <form>
+                    <form action="RegisterForm" method="post">
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                             </div>
-                            <input name="" class="form-control" placeholder="Name" type="text">
+                            <input name="name" class="form-control" placeholder="Name" type="text" required>
                         </div> <!-- form-group// -->
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                             </div>
-                            <input surname="" class="form-control" placeholder="Surname" type="text">
+                            <input name="surname" class="form-control" placeholder="Surname" type="text" required>
                         </div>
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                             </div>
-                            <input login="" class="form-control" placeholder="Login" type="text">
+                            <input name="login" class="form-control" placeholder="Login" type="text" required>
                         </div>
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                             </div>
-                            <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+                            <input name="birth_date" class="form-control" type="date" id="example-date-input" required>
                         </div> <!-- form-group// -->
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                             </div>
-                            <input name="" class="form-control" placeholder="Email address" type="email">
+                            <input name ="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
                         </div> <!-- form-group// -->
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                             </div>
-                            <input class="form-control" placeholder="Create password" type="password">
-                        </div> <!-- form-group// -->
-                        <div class="form-group input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                            </div>
-                            <input class="form-control" placeholder="Repeat password" type="password">
+                            <input name="password" class="form-control" placeholder="Create password" type="password" required>
                         </div> <!-- form-group// -->
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-block"> Create Account</button>
                         </div> <!-- form-group// -->
-                        <p class="text-center">Have an account? <a href="">Log In</a></p>
                     </form>
 
 

@@ -73,13 +73,13 @@ public class DBConnector {
         return new UsersList(usersList);
     }
 
-    public static boolean validateUser(String user, String password){
+    public static boolean validateUser(String user, String password) {
         classforname();
         boolean vali = false;
         try {
 
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * from users where  login = '"+user+"' and password = '"+password+"';");
+            ResultSet rs = stmt.executeQuery("SELECT * from users where  login = '" + user + "' and password = '" + password + "';");
             if (rs.next()) {
                 vali = true;
             }
@@ -89,28 +89,38 @@ public class DBConnector {
         }
         return vali;
     }
-    public static User getSingleUser(String user, String password){
+
+    public static User getSingleUser(String user, String password) {
         classforname();
         User temp = null;
         System.out.println("getSignleUser");
-        System.out.println("SELECT * from users where  login = '"+user+"' and password = '"+password+"';");
-            try {
-                Statement stmt = con.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * from users where  login = '"+user+"' and password = '"+password+"';");
-                while (rs.next()) {
-                    System.out.println(rs.getInt(1) + rs.getInt(2) + rs.getString(3)+ rs.getString(4)+ rs.getDate(5)+ rs.getString(6)+ rs.getString(7) + rs.getString(8));
-                    temp = new User(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getDate(5),rs.getString(6),rs.getString(7),rs.getString(8));
-                }
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+        System.out.println("SELECT * from users where  login = '" + user + "' and password = '" + password + "';");
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * from users where  login = '" + user + "' and password = '" + password + "';");
+            while (rs.next()) {
+                System.out.println(rs.getInt(1) + rs.getInt(2) + rs.getString(3) + rs.getString(4) + rs.getDate(5) + rs.getString(6) + rs.getString(7) + rs.getString(8));
+                temp = new User(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getString(8));
             }
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return temp;
     }
 
-    public static void setUser() {
-        //TODO: SET USER
+    public static void setUser(String name,String surname,String login,String birth_date,String email,String password) {
+        classforname();
+        try {
+            Statement stmt = con.createStatement();
+//            stmt.executeUpdate("INSERT INTO `users` (`id_users`, `usertype`, `name`, `surname`, `birth_date`, `login`, `mail`, `password`) VALUES (NULL, '0',name,surname,birth_date,login,email,password);");
+            stmt.executeUpdate("INSERT INTO `users` (`id_users`, `usertype`, `name`, `surname`, `birth_date`, `login`, `mail`, `password`) VALUES (NULL, '1','" + name + "','" + surname + "','" + birth_date + "','" + login + "','" + email + "','" + password + "');");
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static ProductList getProducts() {
@@ -356,17 +366,18 @@ public class DBConnector {
             e.printStackTrace();
         }
     }
-    public static Warehouse getWarehouse(){
+
+    public static Warehouse getWarehouse() {
         classforname();
         ArrayList<WarehouseItem> tempWarehouseItems = new ArrayList<>(1);
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * from warehouse");
-            ProductList productList  = DBConnector.getProducts();
+            ProductList productList = DBConnector.getProducts();
             while (rs.next()) {
                 //TODO moze sie zajechac jezlei product z bazy bedzie usuniety
-                Product tempProduct = productList.searchByID(rs.getInt("id_product")+"").get(0);
-                WarehouseItem temp = new WarehouseItem(rs.getInt("id_warehouse"),tempProduct,rs.getFloat("price"),rs.getString("key_purchased"),rs.getBoolean("is_sold"));
+                Product tempProduct = productList.searchByID(rs.getInt("id_product") + "").get(0);
+                WarehouseItem temp = new WarehouseItem(rs.getInt("id_warehouse"), tempProduct, rs.getFloat("price"), rs.getString("key_purchased"), rs.getBoolean("is_sold"));
                 tempWarehouseItems.add(temp);
             }
             con.close();
@@ -375,6 +386,7 @@ public class DBConnector {
         }
         return new Warehouse(tempWarehouseItems);
     }
+
     public static void setProductToWarehouse(String id_product, String price, String key_purchased, String is_sold) {
         classforname();
         String isSold = "0";
