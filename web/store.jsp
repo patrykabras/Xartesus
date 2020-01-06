@@ -19,12 +19,14 @@
         body {
             background: radial-gradient(circle, rgb(38, 48, 97), rgb(76, 135, 212));
         }
+
         .back-to-top {
             position: fixed;
             bottom: 25px;
             right: 25px;
             z-index: 200;
         }
+
         .no-btn-syle {
             background: none;
             color: inherit;
@@ -43,7 +45,7 @@
         }
     %>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $(window).scroll(function () {
                 if ($(this).scrollTop() > 50) {
                     $('#back-to-top').fadeIn();
@@ -62,7 +64,8 @@
     </script>
 </head>
 <body>
-<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
+<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i
+        class="fas fa-chevron-up"></i></a>
 
 <div class="container-fluid">
     <div class="row mt-3 ">
@@ -155,63 +158,59 @@
                             <input type="number" class="form-control" id="inputPriceFrom" placeholder="from:">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputPriceTo"> 	&nbsp; </label>
-                            <input type="number" class="form-control" id="inputPriceTo"  placeholder="to:">
+                            <label for="inputPriceTo"> &nbsp; </label>
+                            <input type="number" class="form-control" id="inputPriceTo" placeholder="to:">
                         </div>
                         <hr>
                     </div>
                     <div class="form-group">
                         <label for="type">Type</label>
-                        <select name="type" id="type" class="form-control selectpicker" data-live-search="true" multiple
-                                required>
-                                <option value="1">Type-1</option>
-                                <option value="2">Type-2</option>
-                                <option value="3">Type-3</option>
+                        <select name="type" id="type" class="form-control selectpicker" data-live-search="true" multiple>
+                            <c:forEach items="${type}" var="entry">
+                                <option value="${entry.value}">${entry.value}</option>
+<%--                                <option value="${entry.key}">${entry.value}</option>--%>
+                            </c:forEach>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="genre">Genre</label>
-                        <select name="type" id="genre" class="form-control selectpicker" data-live-search="true" multiple
-                                required>
-                            <option value="1">Genre-1</option>
-                            <option value="2">Genre-2</option>
-                            <option value="3">Genre-3</option>
+                        <select name="genre" id="genre" class="selectpicker form-control" data-live-search="true" multiple>
+                            <c:forEach items="${genre}" var="entry">
+                                <option value="${entry.key}">${entry.value}</option>
+                            </c:forEach>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="graphics">Graphics</label>
-                        <select name="type" id="graphics" class="form-control selectpicker" data-live-search="true" multiple
-                                required>
-                            <option value="1">Graphics-1</option>
-                            <option value="2">Graphics-2</option>
-                            <option value="3">Graphics-3</option>
+                        <select id="graphics" name="graphics" class="form-control selectpicker" data-live-search="true" multiple>
+                            <c:forEach items="${graphics}" var="entry">
+                                <option value="${entry.key}">${entry.value}</option>
+                            </c:forEach>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="pegi">Pegi</label>
-                        <select name="type" id="pegi" class="form-control selectpicker" data-live-search="true" multiple
-                                required>
-                            <option value="1">Pegi-1</option>
-                            <option value="2">Pegi-2</option>
-                            <option value="3">Pegi-3</option>
+                        <select id="pegi" name="pegi" class="form-control selectpicker" data-live-search="true" multiple>
+                            <c:forEach items="${pegi}" var="entry">
+                                <option value="${entry.key}">${entry.value}</option>
+                            </c:forEach>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="producer">Producer</label>
-                        <select name="type" id="producer" class="form-control selectpicker" data-live-search="true" multiple
-                                required>
-                            <option value="1">Producer-1</option>
-                            <option value="2">Producer-2</option>
-                            <option value="3">Producer-3</option>
+                        <select id="producer" name="producer" class="form-control selectpicker" data-live-search="true" multiple>
+                            <option value="">None</option>
+                            <c:forEach items="${producer}" var="entry">
+                                <option value="${entry.key}">${entry.value}</option>
+                            </c:forEach>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="publisher">Publisher</label>
-                        <select name="type" id="publisher" class="form-control selectpicker" data-live-search="true" multiple
-                                required>
-                            <option value="1">Publisher-1</option>
-                            <option value="2">Publisher-2</option>
-                            <option value="3">Publisher-3</option>
+                        <select id="publisher" name="publisher" class="form-control selectpicker" data-live-search="true" multiple>
+                            <c:forEach items="${publisher}" var="entry">
+                                <option value="${entry.key}">${entry.value}</option>
+                            </c:forEach>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Use filter</button>
@@ -221,20 +220,46 @@
         <div class="col-9 my-3 mr-3 py-2 bg-light">
             <form action="ProductInfo" method="get">
                 <div class="d-flex flex-wrap justify-content-center">
-                    <c:forEach items="${warehouseList.getWarehouseItemsList()}" var="warehouseItem">
-                        <c:set var="isSold" value="${warehouseItem.isIs_sold()}"></c:set>
-                        <c:if test="${!isSold}">
-                            <div class="card rounded float-left m-2" style="width: 17rem;">
-                                <img src="img/${warehouseItem.getProduct().getPicture()}" class="card-img-top"
-                                     alt="...">
-                                <h4 class="card-title">${warehouseItem.getProduct().getName()}</h4>
-                                <p class="card-text text-right">${warehouseItem.getPrice()} zł</p>
-                                <button class="btn btn-primary" type="submit"
-                                        value="${warehouseItem.getId()}" name="warehouseID">See product
-                                </button>
+<%--                    <c:forEach items="${warehouseList.getWarehouseItemsList()}" var="warehouseItem">--%>
+<%--                        <c:set var="isSold" value="${warehouseItem.isIs_sold()}"></c:set>--%>
+<%--                        <c:if test="${!isSold}">--%>
+<%--                            <div class="card rounded float-left m-2" style="width: 17rem;">--%>
+<%--                                <img src="img/${warehouseItem.getProduct().getPicture()}" class="card-img-top"--%>
+<%--                                     alt="...">--%>
+<%--                                <h4 class="card-title">${warehouseItem.getProduct().getName()}</h4>--%>
+<%--                                <p class="card-text text-right">${warehouseItem.getPrice()} zł</p>--%>
+<%--                                <button class="btn btn-primary" type="submit"--%>
+<%--                                        value="${warehouseItem.getId()}" name="warehouseID">See product--%>
+<%--                                </button>--%>
+<%--                            </div>--%>
+<%--                        </c:if>--%>
+<%--                    </c:forEach>--%>
+
+                    <c:forEach items="${productList.getProductList()}" var="productTest">
+                        <%--        ${productTest} <br />--%>
+                        <div class="card m-3 " style="width: 18rem;">
+                            <img src="${pageContext.request.contextPath}/img/${productTest.getPicture()}" class="card-img-top"
+                                 alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">${productTest.getName()}</h5>
+                                <p class="card-text">...</p>
                             </div>
-                        </c:if>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Producer: ${productTest.getProducer()}</li>
+                                <li class="list-group-item">Publisher: ${productTest.getPublisher()}</li>
+                                <li class="list-group-item">Pegi: ${productTest.getPegi()}</li>
+                                <li class="list-group-item">Graphic: ${productTest.getGraphic()}</li>
+                                <li class="list-group-item">ReleaseDate: ${productTest.getReleaseDate()}</li>
+                                <li class="list-group-item">Genres: ${productTest.getGenres()}</li>
+                                <li class="list-group-item">Types: ${productTest.getTypes()}</li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="#${productTest.getIdProduct()}" class="card-link">ID
+                                    : ${productTest.getIdProduct()}</a>
+                            </div>
+                        </div>
                     </c:forEach>
+
 
                 </div>
             </form>
