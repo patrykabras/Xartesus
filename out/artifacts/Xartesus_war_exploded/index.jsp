@@ -179,7 +179,9 @@
                 </div>
                 <div class="modal-footer row ">
                     <div class="col-md-12">
-                        Don't have an account? <a href="#"> Sign Up</a>
+                        Don't have an account? <form action="Register" method="get">
+                        <button type="submit" class="nav-link no-btn-syle">Sign Up</button>
+                    </form>
                     </div>
                     <div class="col-md-12">
                         <a href="#">Forgot your password?</a>

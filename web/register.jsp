@@ -12,6 +12,7 @@
     <title>Xartesus</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <link href="img/css/all.css" rel="stylesheet"/>
     <style>
         body {
@@ -25,6 +26,31 @@
             font: inherit;
             cursor: pointer;
         }
+
+        .divider-text {
+            position: relative;
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .divider-text span {
+            padding: 7px;
+            font-size: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .divider-text:after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            border-bottom: 1px solid #ddd;
+            top: 55%;
+            left: 0;
+            z-index: 1;
+        }
+
     </style>
     <%
         String role = null;
@@ -121,24 +147,60 @@
     </div>
     <div class="row">
         <div class="col-xl my-3">
-            <form action="ProductInfo" method="get">
-                <div class="d-flex flex-wrap justify-content-center">
-                    <c:forEach items="${warehouseList.getWarehouseItemsList()}" var="warehouseItem">
-                        <c:set var="isSold" value="${warehouseItem.isIs_sold()}"></c:set>
-                        <c:if test="${!isSold}">
-                            <div class="card rounded float-left m-2" style="width: 17rem;">
-                                <img src="img/${warehouseItem.getProduct().getPicture()}" class="card-img-top"
-                                     alt="...">
-                                <h4 class="card-title">${warehouseItem.getProduct().getName()}</h4>
-                                <p class="card-text text-right">${warehouseItem.getPrice()} zł</p>
-                                <button class="btn btn-primary" type="submit"
-                                        value="${warehouseItem.getId()}" name="warehouseID">See product
-                                </button>
+            <div class="d-flex flex-wrap justify-content-center">
+                <div class="card">
+                    <form>
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                             </div>
-                        </c:if>
-                    </c:forEach>
+                            <input name="" class="form-control" placeholder="Name" type="text">
+                        </div> <!-- form-group// -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            </div>
+                            <input surname="" class="form-control" placeholder="Surname" type="text">
+                        </div>
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            </div>
+                            <input login="" class="form-control" placeholder="Login" type="text">
+                        </div>
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            </div>
+                            <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+                        </div> <!-- form-group// -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                            </div>
+                            <input name="" class="form-control" placeholder="Email address" type="email">
+                        </div> <!-- form-group// -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                            </div>
+                            <input class="form-control" placeholder="Create password" type="password">
+                        </div> <!-- form-group// -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                            </div>
+                            <input class="form-control" placeholder="Repeat password" type="password">
+                        </div> <!-- form-group// -->
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block"> Create Account</button>
+                        </div> <!-- form-group// -->
+                        <p class="text-center">Have an account? <a href="">Log In</a></p>
+                    </form>
+
+
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
@@ -179,9 +241,7 @@
                 </div>
                 <div class="modal-footer row ">
                     <div class="col-md-12">
-                        Don't have an account? <form action="Register" method="get">
-                        <button type="submit" class="nav-link no-btn-syle">Sign Up</button>
-                    </form>
+                        Don't have an account? <a href="#"> Sign Up</a>
                     </div>
                     <div class="col-md-12">
                         <a href="#">Forgot your password?</a>
@@ -228,7 +288,6 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <%-- JS Scripts ---%>
-
 
 </body>
 </html>
