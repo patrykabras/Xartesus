@@ -18,7 +18,6 @@ public class LogIn extends HttpServlet {
         if(isValid){
             User userNow = DBConnector.getSingleUser(userName,password);
             HttpSession session = request.getSession();
-            System.out.println(userNow);
             session.setAttribute("user",userName);
             session.setAttribute("role",userNow.getUsertype()+"");
             session.setAttribute("id",userNow.getIdUser()+"");

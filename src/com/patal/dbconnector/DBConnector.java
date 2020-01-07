@@ -93,13 +93,10 @@ public class DBConnector {
     public static User getSingleUser(String user, String password) {
         classforname();
         User temp = null;
-        System.out.println("getSignleUser");
-        System.out.println("SELECT * from users where  login = '" + user + "' and password = '" + password + "';");
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * from users where  login = '" + user + "' and password = '" + password + "';");
             while (rs.next()) {
-                System.out.println(rs.getInt(1) + rs.getInt(2) + rs.getString(3) + rs.getString(4) + rs.getDate(5) + rs.getString(6) + rs.getString(7) + rs.getString(8));
                 temp = new User(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getString(8));
             }
             con.close();
