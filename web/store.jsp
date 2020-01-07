@@ -132,10 +132,13 @@
                     </button>
                 </form>
             </div>
-            <%
-                    }
-                }
-            %>
+            <%} else { %>
+            <form action="Profile" method="get">
+                <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-user-cog"></i> Profile
+                </button>
+            </form>
+            <%}} %>
 
         </div>
     </div>

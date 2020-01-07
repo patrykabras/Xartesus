@@ -74,10 +74,9 @@
                     <i class="fa fa-user" aria-hidden="true"></i> Login
                 </button>
                 <%} %>
-            </div>
-            <%
-                if (session.getAttribute("role") != null) {
-                    if (session.getAttribute("role").equals("0")) {%>
+            </div><%
+            if (session.getAttribute("role") != null) {
+                if (session.getAttribute("role").equals("0")) {%>
             <div class="col-xs-2 m-2">
                 <form action="ProductManagment" method="post">
                     <button type="submit" class="btn btn-warning">
@@ -91,10 +90,7 @@
                     <i class="fas fa-user-cog"></i> Profile
                 </button>
             </form>
-            <%
-                    }
-                }
-            %>
+            <%}} %>
 
         </div>
     </div>

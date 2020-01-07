@@ -135,7 +135,7 @@
                                 <h4 class="card-title">${warehouseItem.getProduct().getName()}</h4>
                                 <p class="card-text text-right">${warehouseItem.getPrice()} zł</p>
                                 <button class="btn btn-primary" type="submit"
-                                        value="${warehouseItem.getId()}" name="warehouseID">See product
+                                        value="${warehouseItem.getProduct().getIdProduct()}" name="productID">See product
                                 </button>
                             </div>
                         </c:if>
