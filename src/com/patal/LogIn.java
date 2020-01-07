@@ -21,15 +21,19 @@ public class LogIn extends HttpServlet {
             System.out.println(userNow);
             session.setAttribute("user",userName);
             session.setAttribute("role",userNow.getUsertype()+"");
+            session.setAttribute("id",userNow.getIdUser()+"");
             session.setMaxInactiveInterval(30*60);
 
             Cookie loginCookie = new Cookie("user",userName);
             Cookie roleCookie = new Cookie("role",userNow.getUsertype()+"");
+            Cookie idCookie = new Cookie("id",userNow.getIdUser()+"");
 
             loginCookie.setMaxAge(30*60);
             roleCookie.setMaxAge(30*60);
+            idCookie.setMaxAge(30*60);
             response.addCookie(loginCookie);
             response.addCookie(roleCookie);
+            response.addCookie(idCookie);
         }
         response.sendRedirect(request.getContextPath());
 

@@ -83,10 +83,13 @@
                     </button>
                 </form>
             </div>
-            <%
-                    }
-                }
-            %>
+            <%} else { %>
+            <form action="Profile" method="get">
+                <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-user-cog"></i> Profile
+                </button>
+            </form>
+            <%}} %>
 
         </div>
     </div>
@@ -132,7 +135,7 @@
                                 <h4 class="card-title">${warehouseItem.getProduct().getName()}</h4>
                                 <p class="card-text text-right">${warehouseItem.getPrice()} zł</p>
                                 <button class="btn btn-primary" type="submit"
-                                        value="${warehouseItem.getProduct().getIdProduct()}" name="productID">See product
+                                        value="${warehouseItem.getId()}" name="warehouseID">See product
                                 </button>
                             </div>
                         </c:if>
@@ -179,7 +182,9 @@
                 </div>
                 <div class="modal-footer row ">
                     <div class="col-md-12">
-                        Don't have an account? <a href="#"> Sign Up</a>
+                        Don't have an account? <form action="Register" method="get">
+                        <button type="submit" class="nav-link no-btn-syle">Sign Up</button>
+                    </form>
                     </div>
                     <div class="col-md-12">
                         <a href="#">Forgot your password?</a>

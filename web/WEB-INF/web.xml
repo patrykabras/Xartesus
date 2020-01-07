@@ -78,8 +78,20 @@
         <servlet-class>com.patal.store.Store</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AddToCart</servlet-name>
-        <servlet-class>com.patal.store.AddToCart</servlet-class>
+        <servlet-name>Register</servlet-name>
+        <servlet-class>com.patal.register.Register</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterForm</servlet-name>
+        <servlet-class>com.patal.register.RegisterForm</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Profile</servlet-name>
+        <servlet-class>com.patal.profile.Profile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Polling</servlet-name>
+        <servlet-class>com.patal.profile.Polling</servlet-class>
     </servlet>
 
     <!--    mapping   -->
@@ -148,7 +160,19 @@
         <url-pattern>/Store</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AddToCart</servlet-name>
-        <url-pattern>/AddToCart</url-pattern>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterForm</servlet-name>
+        <url-pattern>/RegisterForm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Profile</servlet-name>
+        <url-pattern>/Profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Polling</servlet-name>
+        <url-pattern>/Polling</url-pattern>
     </servlet-mapping>
 </web-app>
