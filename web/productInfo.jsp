@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Xartesus</title>
+    <title>Xartesus - ${product.getName()}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="img/css/all.css" rel="stylesheet"/>
@@ -18,12 +18,41 @@
             background: radial-gradient(circle, rgb(38, 48, 97), rgb(76, 135, 212));
         }
 
+        .back-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 200;
+        }
+
         .no-btn-syle {
             background: none;
             color: inherit;
             border: none;
             font: inherit;
             cursor: pointer;
+        }
+
+
+        .card-block {
+            font-size: 1em;
+            position: relative;
+            margin: 0;
+            padding: 1em;
+            border: none;
+            border-top: 1px solid rgba(34, 36, 38, .1);
+            box-shadow: none;
+
+        }
+
+        .card {
+            font-size: 1em;
+            overflow: hidden;
+            padding: 5px;
+            border: none;
+            border-radius: .28571429rem;
+            box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+            margin-top: 20px;
         }
     </style>
     <%
@@ -35,9 +64,28 @@
             }
         }
     %>
+    <script>
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 50) {
+                    $('#back-to-top').fadeIn();
+                } else {
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            // scroll body to 0px on click
+            $('#back-to-top').click(function () {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 400);
+                return false;
+            });
+        });
+    </script>
 </head>
 <body>
-
+<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i
+        class="fas fa-chevron-up"></i></a>
 
 <div class="container-fluid">
     <div class="row mt-3 ">
@@ -121,24 +169,60 @@
     </div>
     <div class="row">
         <div class="col-xl my-3">
-            <form action="ProductInfo" method="get">
-                <div class="d-flex flex-wrap justify-content-center">
-                    <c:forEach items="${warehouseList.getWarehouseItemsList()}" var="warehouseItem">
-                        <c:set var="isSold" value="${warehouseItem.isIs_sold()}"></c:set>
-                        <c:if test="${!isSold}">
-                            <div class="card rounded float-left m-2" style="width: 17rem;">
-                                <img src="img/${warehouseItem.getProduct().getPicture()}" class="card-img-top"
-                                     alt="...">
-                                <h4 class="card-title">${warehouseItem.getProduct().getName()}</h4>
-                                <p class="card-text text-right">${warehouseItem.getPrice()} zł</p>
-                                <button class="btn btn-primary" type="submit"
-                                        value="${warehouseItem.getProduct().getIdProduct()}" name="productID">See product
-                                </button>
+            <div class="d-flex flex-column justify-content-center">
+
+                <div class="card">
+                    <div class="row">
+                        <div class="col-sm-5 d-flex justify-content-center">
+                            <img class="d-block w-50"
+                                 src="${pageContext.request.contextPath}/img/${product.getPicture()}"
+                                 alt="...">
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="card-block">
+                                <h5 class="card-title">${product.getName()}</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Producer: ${product.getProducer()}</li>
+                                    <li class="list-group-item">Publisher: ${product.getPublisher()}</li>
+                                    <li class="list-group-item">Pegi: ${product.getPegi()}</li>
+                                    <li class="list-group-item">Graphic: ${product.getGraphic()}</li>
+                                    <li class="list-group-item">
+                                        ReleaseDate: ${product.getReleaseDate()}</li>
+                                    <li class="list-group-item">Genres: ${product.getGenres()}</li>
+                                    <li class="list-group-item">Types: ${product.getTypes()}</li>
+                                </ul>
                             </div>
-                        </c:if>
-                    </c:forEach>
+                        </div>
+                    </div>
+
                 </div>
-            </form>
+
+                <table class="table mt-4">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Add to Shop</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${warehouseProducts}" var="warehouseItem">
+                        <tr class="active">
+                            <td>${warehouseItem.getProduct().getName()}</td>
+                            <td>${warehouseItem.getPrice()} zl</td>
+                            <td>
+                                <form action="AddToCart" method="post">
+                                    <button class="btn btn-primary btn-block" type="submit"
+                                            value="${warehouseItem.getId()}" name="warehouseID">Add to Cart
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
+
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
