@@ -1,17 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 05.11.2019
-  Time: 17:18
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <html>
 <head>
-    <title>Xartesus</title>
+    <title>Xartesus - Shop Cart</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="img/css/all.css" rel="stylesheet"/>
@@ -21,27 +13,55 @@
 <jsp:include page="TopTemp.jsp"/>
 <jsp:include page="MenuTemp.jsp"/>
 <div class="row">
-    <div class="col-xl my-3">
-        <form action="ProductInfo" method="get">
-            <div class="d-flex flex-wrap justify-content-center">
-                <c:forEach items="${warehouseList.getWarehouseItemsList()}" var="warehouseItem">
-                    <c:set var="isSold" value="${warehouseItem.isIs_sold()}"></c:set>
-                    <c:if test="${!isSold}">
-                        <div class="card rounded float-left m-2" style="width: 17rem;">
-                            <img src="img/${warehouseItem.getProduct().getPicture()}" class="card-img-top"
-                                 alt="...">
-                            <h4 class="card-title">${warehouseItem.getProduct().getName()}</h4>
-                            <p class="card-text text-right">${warehouseItem.getPrice()} zł</p>
-                            <button class="btn btn-primary" type="submit"
-                                    value="${warehouseItem.getProduct().getIdProduct()}" name="productID">See
-                                product
-                            </button>
+    <div class="col-md-1"></div>
+    <div class="col-xl my-3 p-3 bg-light">
+        <%
+            if (session.getAttribute("shopingCart") != null) {
+
+        %>
+        <c:forEach var="type" items="${sessionScope.shopingCart}">
+            <div class="card mb-3 w-100">
+                <div class="row no-gutters">
+                    <div class="col-md-2">
+                        <img src="img/${type.value.getPicture()}" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">${type.value.getProductName()}</h5>
+                            <p class="card-text"><small class="text-muted">
+                                <fmt:formatNumber type="number" maxFractionDigits="2" value="${type.value.getPrice()}"/>
+                                zl</small></p>
                         </div>
-                    </c:if>
-                </c:forEach>
+                    </div>
+                    <div class="col-md-2">
+                        <form action="RemoveFromCart" method="get">
+                            <button class="btn btn-danger btn-block" type="submit"
+                                    value="${type.value.getWarehouseId()}" name="warehosueItemID">
+                                Remove
+                                Product
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </form>
+        </c:forEach>
+        <div class="row">
+            <div class="col-md d-flex align-items-center justify-content-end">
+                <p class="card-text">Price: <fmt:formatNumber type="number" maxFractionDigits="2" value="${sessionScope.shopingCartPrice}"/>  zl</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md d-flex align-items-center justify-content-end">
+                <form action="CheckoutBuy" method="get">
+                    <button class="btn btn-primary btn-block" type="submit">
+                        Procced to checkout
+                    </button>
+                </form>
+            </div>
+        </div>
+        <%}%>
     </div>
+    <div class="col-md-1"></div>
 </div>
 <jsp:include page="FooterTemp.jsp"/>
 
@@ -67,8 +87,6 @@
 
                         %>
                         <c:forEach var="type" items="${sessionScope.shopingCart}">
-                            <%--                            Key is ${type.key}--%>
-                            <%--                            Value is ${type.value}--%>
                             <div class="card mb-3" style="max-width: 540px;">
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
@@ -95,7 +113,7 @@
                     </div>
                 </div>
                 <div class="modal-footer row ">
-                    <form class="w-100" action="GoToShopCartFullPage" method="get">
+                    <form class="w-100" action="GoToCheckout" method="get">
                         <button class="btn btn-primary btn-block" type="submit">Checkout</button>
                     </form>
                 </div>

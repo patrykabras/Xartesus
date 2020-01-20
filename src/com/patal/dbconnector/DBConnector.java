@@ -8,6 +8,8 @@ import com.patal.warehousemanagment.Warehouse;
 import com.patal.warehousemanagment.WarehouseItem;
 
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -111,17 +113,17 @@ public class DBConnector {
         classforname();
         try {
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("DELETE FROM `genre_polling` WHERE `id_user`="+idUser+"");
+            stmt.executeUpdate("DELETE FROM `genre_polling` WHERE `id_user`=" + idUser + "");
             for (String id : genreIds) {
                 stmt = con.createStatement();
                 stmt.executeUpdate("INSERT INTO `genre_polling` (`id_genre_polling`, `id_user`, `id_genre`) VALUES (NULL, '" + idUser + "','" + id + "');");
             }
-            stmt.executeUpdate("DELETE FROM `graphics_polling` WHERE `id_user`="+idUser+"");
+            stmt.executeUpdate("DELETE FROM `graphics_polling` WHERE `id_user`=" + idUser + "");
             for (String id : graphicsIds) {
                 stmt = con.createStatement();
                 stmt.executeUpdate("INSERT INTO `graphics_polling` (`id_graphics_polling`, `id_user`, `id_graphics`) VALUES (NULL, '" + idUser + "','" + id + "');");
             }
-            stmt.executeUpdate("DELETE FROM `type_polling` WHERE `id_user`="+idUser+"");
+            stmt.executeUpdate("DELETE FROM `type_polling` WHERE `id_user`=" + idUser + "");
             for (String id : typeIds) {
                 stmt = con.createStatement();
                 stmt.executeUpdate("INSERT INTO `type_polling` (`id_type_polling`, `id_user`, `id_type`) VALUES (NULL, '" + idUser + "','" + id + "');");
@@ -171,6 +173,47 @@ public class DBConnector {
             e.printStackTrace();
         }
         return idOfLastProduct;
+    }
+
+
+    public static void BuyProduct(String userID, String userName, String warehouseID) {
+        classforname();
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
+        String formattedDate = dtf.format(now);
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("INSERT INTO `sold` (`id_transaction`, `id_user`, `date_purchase`, `id_warehouse`) VALUES (NULL,'" + userID + "','" + formattedDate + "','" + warehouseID  + "');");
+            stmt.executeUpdate("UPDATE `warehouse` SET `is_sold` = '1' WHERE `warehouse`.`id_warehouse` = "+ warehouseID +";");
+
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static HashMap<String,WarehouseItem> getUserProducts(String userId,String userName){
+        classforname();
+        ArrayList<String> userProducts = new ArrayList<>();
+        HashMap<String, WarehouseItem> userProductsFromWarehouse = new HashMap<>();
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * from sold WHERE `id_user` = "+ userId);
+            while (rs.next()) {
+                userProducts.add(rs.getString("id_warehouse"));
+            }
+            Warehouse warehouse = getWarehouse();
+            for(int i = 0;i < userProducts.size();i++) {
+                rs = stmt.executeQuery("SELECT * from warehouse WHERE `id_warehouse` = "+ userProducts.get(i) );
+                while (rs.next()) {
+                    userProductsFromWarehouse.put(rs.getString("id_warehouse"), warehouse.searchByID(rs.getString("id_warehouse")).get(0));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userProductsFromWarehouse;
     }
 
     public static HashMap<Integer, String> getPublisher() {

@@ -18,17 +18,27 @@ import java.util.List;
 @WebServlet(name = "ProductInfo")
 public class ProductInfo extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request,response);
+        doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String url = "/productInfo.jsp";
+        String urlNotFound = "/ProductNotFound.jsp";
         String id = request.getParameter("productID");
+        if (request.getAttribute("searchProductID") != null) {
+            id = (String) request.getAttribute("searchProductID");
+        }
         ArrayList<WarehouseProduct> warehouseProducts = DBConnector.getWarehouse().getWarehouseProducts(id);
-        Product product = DBConnector.getProducts().searchByID(id).get(0);
+        List productList = DBConnector.getProducts().searchByID(id);
 
-        request.setAttribute("warehouseProducts", warehouseProducts);
-        request.setAttribute("product", product);
-        getServletContext().getRequestDispatcher(url).forward(request, response);
+
+        if (warehouseProducts.size() == 0 && productList.size() == 0) {
+            getServletContext().getRequestDispatcher(urlNotFound).forward(request, response);
+        } else {
+            Product product = DBConnector.getProducts().searchByID(id).get(0);
+            request.setAttribute("warehouseProducts", warehouseProducts);
+            request.setAttribute("product", product);
+            getServletContext().getRequestDispatcher(url).forward(request, response);
+        }
     }
 }

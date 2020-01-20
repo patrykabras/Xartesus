@@ -1,4 +1,4 @@
-package com.patal;
+package com.patal.utils;
 
 import com.patal.dbconnector.DBConnector;
 import com.patal.dbstruct.User;
@@ -11,7 +11,6 @@ import java.io.IOException;
 @WebServlet(name = "LogIn")
 public class LogIn extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String url = "/Hello.jsp";
         String userName = request.getParameter("name");
         String password = request.getParameter("password");
         boolean isValid = DBConnector.validateUser(userName,password);
@@ -34,7 +33,8 @@ public class LogIn extends HttpServlet {
             response.addCookie(roleCookie);
             response.addCookie(idCookie);
         }
-        response.sendRedirect(request.getContextPath());
+        String referer = request.getHeader("Referer");
+        response.sendRedirect(referer);
 
     }
 

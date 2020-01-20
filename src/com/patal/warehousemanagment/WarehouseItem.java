@@ -9,6 +9,8 @@ public class WarehouseItem {
     String key_purchased;
     boolean is_sold;
 
+
+
     public WarehouseItem(int id, Product product, float price, String key_purchased, boolean is_sold) {
         this.id = id;
         this.product = product;
@@ -35,5 +37,15 @@ public class WarehouseItem {
 
     public boolean isIs_sold() {
         return is_sold;
+    }
+    @Override
+    public String toString() {
+        return "WarehouseItem{" +
+                "id=" + id +
+                ", product=" + product +
+                ", price=" + price +
+                ", key_purchased='" + key_purchased + '\'' +
+                ", is_sold=" + is_sold +
+                '}';
     }
 }

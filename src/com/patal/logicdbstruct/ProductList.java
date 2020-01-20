@@ -23,4 +23,7 @@ public class ProductList {
     public List<Product> searchByID(String phrase){
         return productList.stream().filter(product -> phrase.equals(product.getIdProduct() +"")).collect(Collectors.toList());
     }
+    public List<Product> searchByName(String phrase){
+        return productList.stream().filter(product -> phrase.toLowerCase().equals(product.getName().toLowerCase() +"")).collect(Collectors.toList());
+    }
 }

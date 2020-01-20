@@ -41,7 +41,7 @@ public class AddProduct extends HttpServlet {
         try {
             Image image = ImageIO.read(fileContent);
 
-            BufferedImage bi = this.createResizedCopy(image, 220, 220, true);
+            BufferedImage bi = this.createResizedCopy(image, 250, 250, true);
             File dir = new File(pathToWeb + "\\web\\img\\");
             File dirOut = new File(pathToOut);
             if(!dir.exists()){

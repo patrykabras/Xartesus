@@ -19,7 +19,7 @@
     <!--  servlets  -->
     <servlet>
         <servlet-name>LogIn</servlet-name>
-        <servlet-class>com.patal.LogIn</servlet-class>
+        <servlet-class>com.patal.utils.LogIn</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Logout</servlet-name>
@@ -96,6 +96,34 @@
     <servlet>
         <servlet-name>Polling</servlet-name>
         <servlet-class>com.patal.profile.Polling</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GoToLibrary</servlet-name>
+        <servlet-class>com.patal.utils.GoToLibrary</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveFromCart</servlet-name>
+        <servlet-class>com.patal.store.RemoveFromCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GoToShopCartFullPage</servlet-name>
+        <servlet-class>com.patal.utils.GoToShopCartFullPage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckoutBuy</servlet-name>
+        <servlet-class>com.patal.store.CheckoutBuy</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckoutPay</servlet-name>
+        <servlet-class>com.patal.store.CheckoutPay</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PayCard</servlet-name>
+        <servlet-class>com.patal.store.PayCard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchProduct</servlet-name>
+        <servlet-class>com.patal.utils.SearchProduct</servlet-class>
     </servlet>
 
     <!--    mapping   -->
@@ -182,5 +210,33 @@
     <servlet-mapping>
         <servlet-name>Polling</servlet-name>
         <url-pattern>/Polling</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveFromCart</servlet-name>
+        <url-pattern>/RemoveFromCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GoToLibrary</servlet-name>
+        <url-pattern>/GoToLibrary</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GoToShopCartFullPage</servlet-name>
+        <url-pattern>/GoToShopCartFullPage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutBuy</servlet-name>
+        <url-pattern>/CheckoutBuy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutPay</servlet-name>
+        <url-pattern>/CheckoutPay</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PayCard</servlet-name>
+        <url-pattern>/PayCard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchProduct</servlet-name>
+        <url-pattern>/SearchProduct</url-pattern>
     </servlet-mapping>
 </web-app>

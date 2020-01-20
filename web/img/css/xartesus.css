@@ -1,0 +1,61 @@
+body {
+    min-height: 100vh;
+    position: relative;
+    margin: 0;
+    background: radial-gradient(circle, rgb(38, 48, 97), rgb(76, 135, 212));
+}
+.footerSpacer{
+    width: 100vw;
+    min-height: 10vh;
+}
+
+footer {
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+}
+
+.footerXart {
+    width: 100vw;
+    background: black;
+    color: white;
+    min-height: 25px;
+
+}
+
+.no-btn-syle {
+    background: none;
+    color: inherit;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 200;
+}
+
+.card-block {
+    font-size: 1em;
+    position: relative;
+    margin: 0;
+    padding: 1em;
+    border: none;
+    border-top: 1px solid rgba(34, 36, 38, .1);
+    box-shadow: none;
+
+}
+
+.card {
+    font-size: 1em;
+    overflow: hidden;
+    padding: 5px;
+    border: none;
+    border-radius: .28571429rem;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    margin-top: 20px;
+}

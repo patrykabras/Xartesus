@@ -45,7 +45,8 @@ public class Logout extends HttpServlet {
             idCookie.setMaxAge(0);
             response.addCookie(idCookie);
         }
-        response.sendRedirect(request.getContextPath() + "/index");
+        String referer = request.getHeader("Referer");
+        response.sendRedirect(referer);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

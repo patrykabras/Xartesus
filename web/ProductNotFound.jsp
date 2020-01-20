@@ -11,36 +11,81 @@
 
 <html>
 <head>
-    <title>Xartesus</title>
+    <title>Xartesus - 404 Product not found </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="img/css/all.css" rel="stylesheet"/>
     <link href="img/css/xartesus.css" rel="stylesheet"/>
+    <style>
+
+        .back-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 200;
+        }
+
+        .card-block {
+            font-size: 1em;
+            position: relative;
+            margin: 0;
+            padding: 1em;
+            border: none;
+            border-top: 1px solid rgba(34, 36, 38, .1);
+            box-shadow: none;
+
+        }
+
+        .card {
+            font-size: 1em;
+            overflow: hidden;
+            padding: 5px;
+            border: none;
+            border-radius: .28571429rem;
+            box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+            margin-top: 20px;
+        }
+    </style>
+    <%
+        String role = null;
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("role")) role = cookie.getValue();
+            }
+        }
+    %>
+    <script>
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 50) {
+                    $('#back-to-top').fadeIn();
+                } else {
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            // scroll body to 0px on click
+            $('#back-to-top').click(function () {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 400);
+                return false;
+            });
+        });
+    </script>
 </head>
 <body>
+<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i
+        class="fas fa-chevron-up"></i></a>
+
 <jsp:include page="TopTemp.jsp"/>
 <jsp:include page="MenuTemp.jsp"/>
 <div class="row">
     <div class="col-xl my-3">
-        <form action="ProductInfo" method="get">
-            <div class="d-flex flex-wrap justify-content-center">
-                <c:forEach items="${warehouseList.getWarehouseItemsList()}" var="warehouseItem">
-                    <c:set var="isSold" value="${warehouseItem.isIs_sold()}"></c:set>
-                    <c:if test="${!isSold}">
-                        <div class="card rounded float-left m-2" style="width: 17rem;">
-                            <img src="img/${warehouseItem.getProduct().getPicture()}" class="card-img-top"
-                                 alt="...">
-                            <h4 class="card-title">${warehouseItem.getProduct().getName()}</h4>
-                            <p class="card-text text-right">${warehouseItem.getPrice()} zł</p>
-                            <button class="btn btn-primary" type="submit"
-                                    value="${warehouseItem.getProduct().getIdProduct()}" name="productID">See
-                                product
-                            </button>
-                        </div>
-                    </c:if>
-                </c:forEach>
-            </div>
-        </form>
+        <div class="d-flex flex-column justify-content-center">
+
+            <h1> 404 Product not found</h1>
+        </div>
     </div>
 </div>
 <jsp:include page="FooterTemp.jsp"/>
@@ -77,7 +122,9 @@
                                     <div class="col-md-8">
                                         <div class="card-body">
                                             <h5 class="card-title">${type.value.getProductName()}</h5>
-                                            <p class="card-text"><small class="text-muted"><fmt:formatNumber type="number" maxFractionDigits="2" value="${type.value.getPrice()}"/>
+                                            <p class="card-text"><small class="text-muted"><fmt:formatNumber
+                                                    type="number" maxFractionDigits="2"
+                                                    value="${type.value.getPrice()}"/>
                                                 zl</small></p>
                                             <form action="RemoveFromCart" method="get">
                                                 <button class="btn btn-danger btn-block" type="submit"
@@ -107,7 +154,6 @@
 <%-- JS Scripts ---%>
 <jsp:include page="ScriptsTemp.jsp"/>
 <%-- JS Scripts ---%>
-
 
 </body>
 </html>
