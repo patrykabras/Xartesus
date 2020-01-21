@@ -19,16 +19,18 @@ public class PayCard extends HttpServlet {
         String id = (String) session.getAttribute("id");
         String user = (String) session.getAttribute("user");
 
-        HashMap<String,ShoppingCartItem> shoppingCart = new HashMap<String, ShoppingCartItem>();
-        if(session.getAttribute("shopingCart") != null){
+        HashMap<String, ShoppingCartItem> shoppingCart = new HashMap<String, ShoppingCartItem>();
+        if (session.getAttribute("shopingCart") != null) {
             shoppingCart = (HashMap<String, ShoppingCartItem>) session.getAttribute("shopingCart");
-            session.setAttribute("shopingCart",shoppingCart);
-        }else{
-            session.setAttribute("shopingCart",shoppingCart);
+            session.setAttribute("shopingCart", shoppingCart);
+        } else {
+            session.setAttribute("shopingCart", shoppingCart);
         }
 
         for (Map.Entry<String, ShoppingCartItem> entry : shoppingCart.entrySet()) {
-            DBConnector.BuyProduct(id,user,entry.getValue().getWarehouseId());
+            if (!DBConnector.getWarehouse().searchByID(entry.getValue().getWarehouseId()).get(0).isIs_sold()) {
+                DBConnector.BuyProduct(id, user, entry.getValue().getWarehouseId());
+            }
         }
 
         session.removeAttribute("shopingCart");
@@ -36,6 +38,6 @@ public class PayCard extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        doPost(request, response);
     }
 }

@@ -155,6 +155,11 @@ public class DBConnector {
         ProductsDBC productsDBC = new ProductsDBC(con);
         return productsDBC.getProducts();
     }
+    public static ProductList getFilter(String[] types,String[] genres,String[] graphics,String[] pegis,String[] producers,String[] publishers) {
+        classforname();
+        ProductsDBC productsDBC = new ProductsDBC(con);
+        return productsDBC.getFilterSql(types,genres,graphics,pegis,producers,publishers);
+    }
 
     public static int setProduct(String name, String id_producer, String id_publisher, String id_graphics, String id_pegi, String release_date, String fileName) {
         classforname();

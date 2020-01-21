@@ -59,8 +59,7 @@
                         }%>
                         </button>
                     </li>
-                    <% String username = null;
-                        if (session.getAttribute("user") != null) {%>
+                    <% if (session.getAttribute("user") != null) {%>
                     <li class="nav-item dropdown mx-2">
                         <a class="btn btn-success dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
@@ -124,55 +123,5 @@
                 document.getElementById("GoToLibraryForm").submit();
             }
         </script>
-
-        <%--        <nav class="navbar navbar-expand-lg navbar-light bg-light">--%>
-        <%--            <a class="navbar-brand" href="#">Xartesus</a>--%>
-        <%--            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">--%>
-        <%--                <span class="navbar-toggler-icon"></span>--%>
-        <%--            </button>--%>
-        <%--            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">--%>
-        <%--                <div class="navbar-nav">--%>
-        <%--                    <form action="GoBackToIndex" id="GoBackToIndexForm" method="get">--%>
-        <%--                        <a class="nav-item nav-link active" id="GoBackToIndexLink" href="#">Home </a>--%>
-        <%--                    </form>--%>
-        <%--                    <form action="Store" id="Store" method="get">--%>
-        <%--                        <a class="nav-item nav-link active" id="StoreLink" href="#">Shop </a>--%>
-        <%--                    </form>--%>
-        <%--                    <%--%>
-        <%--                        if (session.getAttribute("user") != null) {%>--%>
-        <%--                        <form action="GoToLibrary" id="GoToLibraryForm" method="post">--%>
-        <%--                            <a class="nav-item nav-link active"  id="GoToLibraryLink" href="#">Library </a>--%>
-        <%--                        </form>--%>
-        <%--                    <%}%>--%>
-        <%--                </div>--%>
-        <%--            </div>--%>
-        <%--        </nav>--%>
-
-
-        <%--        <nav class="navbar navbar-expand-lg navbar-light bg-light">--%>
-
-        <%--            <div class="collapse navbar-collapse" id="navbarSupportedContent">--%>
-        <%--                <ul class="navbar-nav mr-auto">--%>
-        <%--                    <li class="nav-item active px-3">--%>
-        <%--                        <form action="GoBackToIndex" method="get">--%>
-        <%--                            <button type="submit" class="nav-link no-btn-syle">Home</button>--%>
-        <%--                        </form>--%>
-        <%--                    </li>--%>
-        <%--                    <li class="nav-item px-3">--%>
-        <%--                        <form action="Store" method="get">--%>
-        <%--                            <button type="submit" class="nav-link no-btn-syle">Shop</button>--%>
-        <%--                        </form>--%>
-        <%--                    </li>--%>
-        <%--                    <%--%>
-        <%--                        if (session.getAttribute("user") != null) {%>--%>
-        <%--                    <li class="nav-item px-3">--%>
-        <%--                        <form action="GoToLibrary" method="post">--%>
-        <%--                            <button type="submit" class="nav-link no-btn-syle">Library</button>--%>
-        <%--                        </form>--%>
-        <%--                    </li>--%>
-        <%--                    <%}%>--%>
-        <%--                </ul>--%>
-        <%--            </div>--%>
-        <%--        </nav>--%>
     </div>
 </div>

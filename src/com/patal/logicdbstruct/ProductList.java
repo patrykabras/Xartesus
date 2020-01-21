@@ -3,6 +3,7 @@ package com.patal.logicdbstruct;
 import com.patal.dbstruct.Product;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,5 +26,9 @@ public class ProductList {
     }
     public List<Product> searchByName(String phrase){
         return productList.stream().filter(product -> phrase.toLowerCase().equals(product.getName().toLowerCase() +"")).collect(Collectors.toList());
+    }
+    public List<Product> filterProducts(String[] types,String[] genres,String[] graphics,String[] pegis,String[] producers,String[] publishers){
+
+        return new ArrayList<>(1);
     }
 }

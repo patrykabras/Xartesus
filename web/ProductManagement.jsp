@@ -229,15 +229,20 @@
                 <label for="price">Price: </label>
                 <input type="number" step="0.01" class="form-control" id="price" name="price">
             </div>
+<%--            <div class="form-group">--%>
+<%--                <label for="key_purchased">Key purchased: </label>--%>
+<%--                <input type="text" class="form-control" id="key_purchased" name="key_purchased"--%>
+<%--                       placeholder="key_purchased">--%>
+<%--            </div>--%>
+<%--            <div class="form-check">--%>
+<%--                 <input class="form-check-input" name="is_sold" type="checkbox" id="is_sold"--%>
+<%--                       value="is_sold"--%>
+<%--                       aria-label="...">Is Sold--%>
+<%--            </div>--%>
             <div class="form-group">
-                <label for="key_purchased">Key purchased: </label>
-                <input type="text" class="form-control" id="key_purchased" name="key_purchased"
-                       placeholder="key_purchased">
-            </div>
-            <div class="form-check">
-                 <input class="form-check-input" name="is_sold" type="checkbox" id="is_sold"
-                       value="is_sold"
-                       aria-label="...">Is Sold
+                <label for="productAmount">Product Amount: </label>
+                <input type="number" class="form-control" id="productAmount" name="productAmount"
+                       placeholder="product Amount">
             </div>
             <button type="submit" class="btn btn-primary btn-lg btn-block my-3">Submit</button>
         </form>

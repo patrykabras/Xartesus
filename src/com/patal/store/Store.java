@@ -19,7 +19,13 @@ public class Store extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductList productList = DBConnector.getProducts();
+        if(request.getAttribute("productListFilter") != null){
+            ProductList productListFilter = (ProductList) request.getAttribute("productListFilter");
+            request.setAttribute("productList", productListFilter);
+        }else{
+            ProductList productList = DBConnector.getProducts();
+            request.setAttribute("productList", productList);
+        }
         Warehouse warehouseList = DBConnector.getWarehouse();
         request.setAttribute("warehouseList", warehouseList);
         HashMap<Integer, String> genre = DBConnector.getGenre();
@@ -29,7 +35,6 @@ public class Store extends HttpServlet {
         HashMap<Integer, String> publisher = DBConnector.getPublisher();
         HashMap<Integer, String> type = DBConnector.getType();
 
-        request.setAttribute("productList", productList);
         request.setAttribute("warehouseList", warehouseList);
         request.setAttribute("genre", genre);
         request.setAttribute("graphics", graphics);

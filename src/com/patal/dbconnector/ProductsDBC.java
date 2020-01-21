@@ -5,7 +5,9 @@ import com.patal.logicdbstruct.ProductList;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 class ProductsDBC {
     private Connection con;
@@ -38,6 +40,107 @@ class ProductsDBC {
             e.printStackTrace();
         }
         return new ProductList(products);
+    }
+
+    public ProductList getProducts(String sql) {
+        ArrayList<Product> products = new ArrayList<>();
+        HashMap<String,Product> productHashMap = new HashMap<>();
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int idProduct = rs.getInt("id_products");
+                String name = rs.getString("name");
+                String producer = getProdcuer(rs.getInt("id_producer"));
+                String publisher = getPublisher(rs.getInt("id_publisher"));
+                String pegi = getPegi(rs.getInt("id_pegi"));
+                String graphic = getGraphics(rs.getInt("id_graphics"));
+                Date releaseDate = rs.getDate("release_date");
+                String picture = rs.getString("picture");
+                List<String> genres = getGenres(idProduct + "");
+                List<String> types = getTypes(idProduct + "");
+                Product temp = new Product(idProduct,name,producer,publisher,pegi,graphic,releaseDate,picture,genres,types);
+                productHashMap.put(idProduct +"",temp);
+            }
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for(Map.Entry<String, Product> entry : productHashMap.entrySet()) {
+            products.add(entry.getValue());
+        }
+
+        return new ProductList(products);
+    }
+
+    public ProductList getFilterSql(String[] types,String[] genres,String[] graphics,String[] pegis,String[] producers,String[] publishers) {
+        String sqlStart = "SELECT * FROM `products`INNER JOIN genre_product ON products.id_products = genre_product.id_product INNER JOIN type_product ON products.id_products = type_product.id_product";
+        String sql = "";
+
+        if(producers != null){
+            if(producers.length != 0){
+                for(String producer : producers){
+                    sql += " products.id_producer = " + producer + " OR ";
+                }
+                sql = sql.substring(0,sql.length() - 3);
+                sql += " AND ";
+            }
+        }
+        if(publishers != null){
+            if(publishers.length != 0){
+                for(String publisher : publishers){
+                    sql += " products.id_publisher = " + publisher + " OR ";
+                }
+                sql = sql.substring(0,sql.length() - 3);
+                sql += " AND ";
+            }
+        }
+        if(graphics != null){
+            if(graphics.length != 0){
+                for(String graphic : graphics){
+                    sql += " products.id_graphics = " + graphic + " OR ";
+                }
+                sql = sql.substring(0,sql.length() - 3);
+                sql += " AND ";
+            }
+        }
+
+        if(pegis != null){
+            if(pegis.length != 0){
+                for(String pegi : pegis){
+                    sql += " products.id_pegi = " + pegi + " OR ";
+                }
+                sql = sql.substring(0,sql.length() - 3);
+                sql += " AND ";
+            }
+        }
+
+        if(genres != null){
+            if(genres.length != 0){
+                for(String genre : genres){
+                    sql += " genre_product.id_genre = " + genre + " OR ";
+                }
+                sql = sql.substring(0,sql.length() - 3);
+                sql += " AND ";
+            }
+        }
+
+        if(types != null){
+            if(types.length != 0){
+                for(String type : types){
+                    sql += " type_product.id_type = " + type + " OR ";
+                }
+                sql = sql.substring(0,sql.length() - 3);
+                sql += " AND ";
+            }
+        }
+
+
+        if(sql.length() != 0){
+            sql = sql.substring(0,sql.length() - 4);
+            sqlStart += " WHERE " + sql;
+        }
+        return getProducts(sqlStart);
     }
 
     private String getProdcuer(int index){
