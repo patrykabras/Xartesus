@@ -1,20 +1,40 @@
 package com.patal.utils;
 
 public class ErrorMessage {
-    String name;
+    String errorType;
+    String title;
+    String from;
     String description;
 
-    public ErrorMessage(String name, String description) {
-        this.name = name;
+    public ErrorMessage(String errorType, String title, String from, String description) {
+        this.errorType = errorType;
+        this.title = title;
+        this.from = from;
         this.description = description;
     }
 
-    public String getName() {
-        return name;
+    public String getErrorType() {
+        return errorType;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setErrorType(String errorType) {
+        this.errorType = errorType;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
     }
 
     public String getDescription() {

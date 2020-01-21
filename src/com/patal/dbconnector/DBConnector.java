@@ -138,8 +138,9 @@ public class DBConnector {
 
     }
 
-    public static void setUser(String name, String surname, String login, String birth_date, String email, String password) {
+    public static void setUser(String name, String surname, String username, String birth_date, String email, String password) {
         classforname();
+        String login = username.toLowerCase();
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO `users` (`id_users`, `usertype`, `name`, `surname`, `birth_date`, `login`, `mail`, `password`) VALUES (NULL, '1','" + name + "','" + surname + "','" + birth_date + "','" + login + "','" + email + "','" + password + "');");
@@ -148,6 +149,22 @@ public class DBConnector {
             e.printStackTrace();
         }
 
+    }
+
+    public static boolean isUserExists(String username) {
+        classforname();
+        boolean isExist = false;
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * from users where  login = '" + username + "';");
+            while (rs.next()) {
+                isExist = true;
+            }
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isExist;
     }
 
     public static ProductList getProducts() {

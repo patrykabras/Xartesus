@@ -27,8 +27,8 @@
                                 <input type="password" class="form-control" placeholder="password" name="password">
                             </div>
                             <div class="form-group">
-                                <input type="checkbox">Remember Me
-                                <input type="submit" value="Login" class="btn btn-success float-right">
+<%--                                <input type="checkbox">Remember Me--%>
+                                <input type="submit" value="Login" class="btn btn-success btn-block">
                             </div>
                         </form>
                     </div>
@@ -40,9 +40,9 @@
                             <button type="submit" class="nav-link no-btn-syle">Sign Up</button>
                         </form>
                     </div>
-                    <div class="col-md-12">
-                        <a href="#">Forgot your password?</a>
-                    </div>
+<%--                    <div class="col-md-12">--%>
+<%--                        <a href="#">Forgot your password?</a>--%>
+<%--                    </div>--%>
                 </div>
             </div>
         </div>

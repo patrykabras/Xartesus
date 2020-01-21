@@ -12,76 +12,13 @@
 <html>
 <head>
     <title>Xartesus - Store</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-    <link href="img/css/all.css" rel="stylesheet"/>
-    <link href="img/css/xartesus.css" rel="stylesheet"/>
-    <style>
-
-
-        .back-to-top {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            z-index: 200;
-        }
-
-
-        .card-block {
-            font-size: 1em;
-            position: relative;
-            margin: 0;
-            padding: 1em;
-            border: none;
-            border-top: 1px solid rgba(34, 36, 38, .1);
-            box-shadow: none;
-
-        }
-
-        .card {
-            font-size: 1em;
-            overflow: hidden;
-            padding: 5px;
-            border: none;
-            border-radius: .28571429rem;
-            box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
-            margin-top: 20px;
-        }
-    </style>
-    <%
-        String role = null;
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("role")) role = cookie.getValue();
-            }
-        }
-    %>
-    <script>
-        $(document).ready(function () {
-            $(window).scroll(function () {
-                if ($(this).scrollTop() > 50) {
-                    $('#back-to-top').fadeIn();
-                } else {
-                    $('#back-to-top').fadeOut();
-                }
-            });
-            // scroll body to 0px on click
-            $('#back-to-top').click(function () {
-                $('body,html').animate({
-                    scrollTop: 0
-                }, 400);
-                return false;
-            });
-        });
-    </script>
+    <jsp:include page="HeaderTemp.jsp"/>
 </head>
 <body>
 <a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i
         class="fas fa-chevron-up"></i></a>
 
+<jsp:include page="ErrorMessage.jsp"/>
 <jsp:include page="TopTemp.jsp"/>
 <jsp:include page="MenuTemp.jsp"/>
 <div class="row">

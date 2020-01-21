@@ -5,12 +5,10 @@
 <html>
 <head>
     <title>Xartesus - Checkout</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="img/css/all.css" rel="stylesheet"/>
-    <link href="img/css/xartesus.css" rel="stylesheet"/>
+    <jsp:include page="HeaderTemp.jsp"/>
 </head>
 <body>
+<jsp:include page="ErrorMessage.jsp"/>
 <jsp:include page="TopTemp.jsp"/>
 <jsp:include page="MenuTemp.jsp"/>
 <div class="row">
@@ -58,10 +56,88 @@
         </div>
 
         <%} else { %>
-        <button type="button" class=" btn btn-success btn-block p-2 m-3" data-toggle="modal"
-                data-target="#exampleModalCenter">
-            <i class="fa fa-user" aria-hidden="true"></i> Login
-        </button>
+        <div class="row">
+            <div class="d-flex justify-content-center col-md-5">
+                <div class="modal-body">
+                    <p class="navbar-text text-warning">Please log in if you want to buy products from your
+                        shopping cart. </p>
+                    <div class="container">
+
+                        <form action="LogIn" method="post">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="username" name="name">
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input type="password" class="form-control" placeholder="password" name="password">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Login" class="btn btn-success btn-block">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center col-md-2"></div>
+            <div class="d-flex justify-content-center col-md-5">
+
+                <form class="p-2" action="RegisterForm" method="post">
+                    <p class="navbar-text text-warning"> Don't have account? Create here. </p>
+                    <div id="login" class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input name="login" class="form-control" placeholder="Login" type="text" required>
+                    </div>
+                    <div id="password" class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input name="password" class="form-control" placeholder="Create password" type="password"
+                               required>
+                    </div>
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                        </div>
+                        <input name="email" type="email" class="form-control" id="exampleInputEmail1"
+                               aria-describedby="emailHelp" placeholder="Enter email" required>
+                    </div>
+                    <hr class="separator">
+                    <div id="name" class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fas fa-address-card"></i> </span>
+                        </div>
+                        <input name="name" class="form-control" placeholder="Name" type="text" required>
+                    </div>
+                    <div id="surname" class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fas fa-address-card"></i> </span>
+                        </div>
+                        <input name="surname" class="form-control" placeholder="Surname" type="text" required>
+                    </div>
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="far fa-calendar-alt"></i> </span>
+                        </div>
+                        <input name="birth_date" class="form-control" type="date" id="example-date-input" required>
+                    </div>
+
+                    <hr class="separator">
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Create Account</button>
+                    </div> <!-- form-group// -->
+                </form>
+
+
+            </div>
+        </div>
         <%} %>
     </div>
     <div class="col-xl-1"></div>

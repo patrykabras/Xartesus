@@ -12,25 +12,10 @@
 <html>
 <head>
     <title>Xartesus - Profile</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="img/css/all.css" rel="stylesheet"/>
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-    <link href="img/css/xartesus.css" rel="stylesheet"/>
-    <link href="img/css/bootstrap-select.min.css" rel="stylesheet"/>
-    <%
-        String role = null;
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("role")) role = cookie.getValue();
-            }
-        }
-    %>
+    <jsp:include page="HeaderTemp.jsp"/>
 </head>
 <body>
-
+<jsp:include page="ErrorMessage.jsp"/>
 
 <div class="container-fluid">
     <jsp:include page="TopTemp.jsp"/>
