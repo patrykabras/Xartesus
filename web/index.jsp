@@ -25,12 +25,12 @@
                 <c:forEach items="${warehouseList.getWarehouseItemsList()}" var="warehouseItem">
                     <c:set var="isSold" value="${warehouseItem.isIs_sold()}"></c:set>
                     <c:if test="${!isSold}">
-                        <div class="card rounded float-left m-2" style="width: 17rem;">
+                        <div class="card rounded float-left m-2" style="width: 17rem;height: 390px;position: relative;">
                             <img src="img/${warehouseItem.getProduct().getPicture()}" class="card-img-top"
                                  alt="...">
                             <h4 class="card-title">${warehouseItem.getProduct().getName()}</h4>
-                            <p class="card-text text-right">${warehouseItem.getPrice()} zł</p>
-                            <button class="btn btn-primary" type="submit"
+                            <p class="card-text text-right mb-5">${warehouseItem.getPrice()} zł</p>
+                            <button class="btn btn-primary btn-block" style="position: absolute;bottom: 0;" type="submit"
                                     value="${warehouseItem.getProduct().getIdProduct()}" name="productID">See
                                 product
                             </button>

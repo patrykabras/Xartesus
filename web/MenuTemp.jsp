@@ -72,7 +72,7 @@
                                 </button>
                             </form>
                             <form action="GoToLibrary" method="get">
-                                <button type="submit" class="btn btn-danger dropdown-item">
+                                <button type="submit" class="btn btn-success dropdown-item">
                                     <i class="fas fa-gamepad"></i> Library
                                 </button>
                             </form>

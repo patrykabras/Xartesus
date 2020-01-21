@@ -31,55 +31,6 @@
             <div class="row">
                 <div class="col-md">
                     <form action="Filter" method="get" id="filter" style="max-width: 300px;">
-                        <%--                <div class="form-row">--%>
-                        <%--                    <div class="form-group col-md-6">--%>
-                        <%--                        <label for="inputPriceFrom">Price:</label>--%>
-                        <%--                        <input type="number" name="priceFrom" class="form-control" id="inputPriceFrom" placeholder="from:">--%>
-                        <%--                    </div>--%>
-                        <%--                    <div class="form-group col-md-6">--%>
-                        <%--                        <label for="inputPriceTo"> &nbsp; </label>--%>
-                        <%--                        <input type="number" name="priceTo" class="form-control" id="inputPriceTo" placeholder="to:">--%>
-                        <%--                    </div>--%>
-                        <%--                    <hr>--%>
-                        <%--                </div>--%>
-                        <div class="form-group">
-                            <label for="type">Type</label>
-                            <select name="type" id="type" class="form-control selectpicker" data-live-search="true"
-                                    multiple>
-                                <c:forEach items="${type}" var="entry">
-                                    <option value="${entry.key}">${entry.value}</option>
-                                    <%--                                <option value="${entry.key}">${entry.value}</option>--%>
-                                </c:forEach>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="genre">Genre</label>
-                            <select name="genre" id="genre" class="selectpicker form-control" data-live-search="true"
-                                    multiple>
-                                <c:forEach items="${genre}" var="entry">
-                                    <option value="${entry.key}">${entry.value}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="graphics">Graphics</label>
-                            <select id="graphics" name="graphics" class="form-control selectpicker"
-                                    data-live-search="true"
-                                    multiple>
-                                <c:forEach items="${graphics}" var="entry">
-                                    <option value="${entry.key}">${entry.value}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="pegi">Pegi</label>
-                            <select id="pegi" name="pegi" class="form-control selectpicker" data-live-search="true"
-                                    multiple>
-                                <c:forEach items="${pegi}" var="entry">
-                                    <option value="${entry.key}">${entry.value}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
                         <div class="form-group">
                             <label for="producer">Producer</label>
                             <select id="producer" name="producer" class="form-control selectpicker"
@@ -96,6 +47,43 @@
                             <select id="publisher" name="publisher" class="form-control selectpicker"
                                     data-live-search="true" multiple>
                                 <c:forEach items="${publisher}" var="entry">
+                                    <option value="${entry.key}">${entry.value}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pegi">Pegi</label>
+                            <select id="pegi" name="pegi" class="form-control selectpicker" data-live-search="true"
+                                    multiple>
+                                <c:forEach items="${pegi}" var="entry">
+                                    <option value="${entry.key}">${entry.value}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="graphics">Graphics</label>
+                            <select id="graphics" name="graphics" class="form-control selectpicker"
+                                    data-live-search="true"
+                                    multiple>
+                                <c:forEach items="${graphics}" var="entry">
+                                    <option value="${entry.key}">${entry.value}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="genre">Genre</label>
+                            <select name="genre" id="genre" class="selectpicker form-control" data-live-search="true"
+                                    multiple>
+                                <c:forEach items="${genre}" var="entry">
+                                    <option value="${entry.key}">${entry.value}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="type">Type</label>
+                            <select name="type" id="type" class="form-control selectpicker" data-live-search="true"
+                                    multiple>
+                                <c:forEach items="${type}" var="entry">
                                     <option value="${entry.key}">${entry.value}</option>
                                 </c:forEach>
                             </select>

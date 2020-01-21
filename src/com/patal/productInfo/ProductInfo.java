@@ -31,13 +31,15 @@ public class ProductInfo extends HttpServlet {
         ArrayList<WarehouseProduct> warehouseProducts = DBConnector.getWarehouse().getWarehouseProducts(id);
         List productList = DBConnector.getProducts().searchByID(id);
 
-
         if (warehouseProducts.size() == 0 && productList.size() == 0) {
             getServletContext().getRequestDispatcher(urlNotFound).forward(request, response);
         } else {
+            Product singleProduct = DBConnector.getProducts().searchByID(id).get(0);
+            List productSuggestion = DBConnector.productsSugesstionTo(singleProduct).getProductList();
             Product product = DBConnector.getProducts().searchByID(id).get(0);
             request.setAttribute("warehouseProducts", warehouseProducts);
             request.setAttribute("product", product);
+            request.setAttribute("productSuggestion", productSuggestion);
             getServletContext().getRequestDispatcher(url).forward(request, response);
         }
     }

@@ -24,7 +24,7 @@ public class RegisterForm extends HttpServlet {
         String birth_date = request.getParameter("birth_date");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        if(!DBConnector.isUserExists(login) && (login != "" || login != null)){
+        if(!DBConnector.isUserExists(login) && (login != "" || login != null && (password != "" || password != null))){
             errorMessageList.add(new ErrorMessage("bg-success","Success to create account","register","congratulation now you have your own account"));
             session.setAttribute("errorMessageList",errorMessageList);
             DBConnector.setUser(name,surname,login,birth_date,email,password);

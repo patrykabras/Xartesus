@@ -24,6 +24,7 @@
 <div class="row">
     <div class="col-xl-1"></div>
     <div class="col-xl my-3">
+
         <div class="d-flex flex-column justify-content-center">
 
             <div class="card">
@@ -80,6 +81,33 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>
+    <div class="col-xl-1"></div>
+</div>
+<div class="row ">
+    <div class="col-xl-1"></div>
+    <div class="col-xl">
+        <div class="row d-flex justify-content-center">
+            <h2 class="text-info rounded-pill p-3 bg-dark">
+                If you like this game you may like our suggestions : </h2>
+        </div>
+        <div class="row d-flex justify-content-center flex-wrap">
+            <c:if test="${productSuggestion != null}">
+                <form action="ProductInfo" method="get">
+                    <c:forEach items="${productSuggestion}" var="productSuggestionSingle">
+                        <div class="card rounded float-left m-2" style="width: 17rem;height: 390px;position: relative;">
+                            <img src="img/${productSuggestionSingle.getPicture()}" class="card-img-top"
+                                 alt="...">
+                            <h4 class="card-title">${productSuggestionSingle.getName()}</h4>
+                            <button class="btn btn-primary btn-block" style="position: absolute;bottom: 0;"  type="submit"
+                                    value="${productSuggestionSingle.getIdProduct()}" name="productID">See
+                                product
+                            </button>
+                        </div>
+                    </c:forEach>
+                </form>
+            </c:if>
         </div>
     </div>
     <div class="col-xl-1"></div>

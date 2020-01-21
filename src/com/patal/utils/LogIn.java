@@ -37,8 +37,9 @@ public class LogIn extends HttpServlet {
             response.addCookie(loginCookie);
             response.addCookie(roleCookie);
             response.addCookie(idCookie);
+            errorMessageList.add(new ErrorMessage("bg-success","Success to login","login","Now you can buy something nice!"));
         }else{
-            errorMessageList.add(new ErrorMessage("bg-danger","Failed to login","login","wrong username or password"));
+            errorMessageList.add(new ErrorMessage("bg-danger","Failed to login","login","Wrong username or password!"));
         }
         session.setAttribute("errorMessageList",errorMessageList);
         String referer = request.getHeader("Referer");

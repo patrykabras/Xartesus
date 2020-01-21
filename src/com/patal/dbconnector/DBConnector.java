@@ -16,7 +16,7 @@ import java.util.List;
 
 public class DBConnector {
     private static Connection con;
-    private static String url = "jdbc:mysql://localhost:3306/xartesus";
+    private static String url = "jdbc:mysql://localhost:3306/xartesusnew";
     private static String user = "root";
     private static String password = "";
 
@@ -177,6 +177,11 @@ public class DBConnector {
         ProductsDBC productsDBC = new ProductsDBC(con);
         return productsDBC.getFilterSql(types,genres,graphics,pegis,producers,publishers);
     }
+    public static ProductList productsSugesstionTo(Product singleProduct) {
+        classforname();
+        ProductsDBC productsDBC = new ProductsDBC(con);
+        return productsDBC.productsSugesstionTo(singleProduct);
+    }
 
     public static int setProduct(String name, String id_producer, String id_publisher, String id_graphics, String id_pegi, String release_date, String fileName) {
         classforname();
@@ -243,7 +248,7 @@ public class DBConnector {
         HashMap<Integer, String> publishersMap = new HashMap<>();
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * from publisher");
+            ResultSet rs = stmt.executeQuery("SELECT * from publisher ORDER BY `publisher`.`name` ASC");
             while (rs.next()) {
                 publishersMap.put(rs.getInt("id_publisher"), rs.getString("name"));
             }
@@ -269,7 +274,7 @@ public class DBConnector {
         HashMap<Integer, String> publishersMap = new HashMap<>();
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * from producer");
+            ResultSet rs = stmt.executeQuery("SELECT * from producer ORDER BY `producer`.`name` ASC");
             while (rs.next()) {
                 publishersMap.put(rs.getInt("id_producer"), rs.getString("name"));
             }
@@ -296,7 +301,7 @@ public class DBConnector {
         HashMap<Integer, String> publishersMap = new HashMap<>();
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * from genre");
+            ResultSet rs = stmt.executeQuery("SELECT * from genre ORDER BY `name` ASC");
             while (rs.next()) {
                 publishersMap.put(rs.getInt("id_genre"), rs.getString("name"));
             }
@@ -323,7 +328,7 @@ public class DBConnector {
         HashMap<Integer, String> publishersMap = new HashMap<>();
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * from graphics");
+            ResultSet rs = stmt.executeQuery("SELECT * from graphics ORDER BY `graphics`.`name` ASC");
             while (rs.next()) {
                 publishersMap.put(rs.getInt("id_graphics"), rs.getString("name"));
             }
@@ -350,7 +355,7 @@ public class DBConnector {
         HashMap<Integer, String> publishersMap = new HashMap<>();
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * from type");
+            ResultSet rs = stmt.executeQuery("SELECT * from type ORDER BY `type`.`name` ASC");
             while (rs.next()) {
                 publishersMap.put(rs.getInt("id_type"), rs.getString("name"));
             }

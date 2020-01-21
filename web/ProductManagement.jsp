@@ -9,23 +9,24 @@
           href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
     <link href="img/css/all.css" rel="stylesheet"/>
     <style>
-        .flyBtn{
-            position:fixed;
-            width:60px;
-            height:60px;
-            bottom:40px;
-            right:40px;
-            background-color:#0C9;
-            color:#FFF;
-            border-radius:50px;
-            text-align:center;
+        .flyBtn {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #0C9;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
             box-shadow: 2px 2px 3px #999;
         }
     </style>
 </head>
 <body>
 <form action="GoBackToIndex" method="get">
-    <button type="submit" class="btn btn-primary flyBtn"  data-toggle="tooltip" data-placement="left" title="Go back to main page"><i class="fas fa-home"></i></button>
+    <button type="submit" class="btn btn-primary flyBtn" data-toggle="tooltip" data-placement="left"
+            title="Go back to main page"><i class="fas fa-home"></i></button>
 </form>
 <ul class="nav nav-pills mb-3 sticky-top bg-light" id="pills-tab" role="tablist">
     <li class="nav-item">
@@ -38,7 +39,8 @@
     </li>
     <li class="nav-item">
         <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#addDictionaryTable" role="tab"
-           aria-controls="pills-contact" aria-selected="false">Directionary Table</a>
+           aria-controls="pills-contact" aria-selected="false">
+            Dictionary Table</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" id="pills-warehouse-tab" data-toggle="pill" href="#warehouse" role="tab"
@@ -222,23 +224,23 @@
             <select name="id_product" id="id_product" class="form-control selectpicker" data-live-search="true"
                     required>
                 <c:forEach items="${productList.getProductList()}" var="productTest">
-                    <option value="${productTest.getIdProduct()}" >${productTest.getName()}</option>
+                    <option value="${productTest.getIdProduct()}">${productTest.getName()}</option>
                 </c:forEach>
             </select>
             <div class="form-group">
                 <label for="price">Price: </label>
                 <input type="number" step="0.01" class="form-control" id="price" name="price">
             </div>
-<%--            <div class="form-group">--%>
-<%--                <label for="key_purchased">Key purchased: </label>--%>
-<%--                <input type="text" class="form-control" id="key_purchased" name="key_purchased"--%>
-<%--                       placeholder="key_purchased">--%>
-<%--            </div>--%>
-<%--            <div class="form-check">--%>
-<%--                 <input class="form-check-input" name="is_sold" type="checkbox" id="is_sold"--%>
-<%--                       value="is_sold"--%>
-<%--                       aria-label="...">Is Sold--%>
-<%--            </div>--%>
+            <%--            <div class="form-group">--%>
+            <%--                <label for="key_purchased">Key purchased: </label>--%>
+            <%--                <input type="text" class="form-control" id="key_purchased" name="key_purchased"--%>
+            <%--                       placeholder="key_purchased">--%>
+            <%--            </div>--%>
+            <%--            <div class="form-check">--%>
+            <%--                 <input class="form-check-input" name="is_sold" type="checkbox" id="is_sold"--%>
+            <%--                       value="is_sold"--%>
+            <%--                       aria-label="...">Is Sold--%>
+            <%--            </div>--%>
             <div class="form-group">
                 <label for="productAmount">Product Amount: </label>
                 <input type="number" class="form-control" id="productAmount" name="productAmount"

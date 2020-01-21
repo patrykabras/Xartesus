@@ -11,7 +11,7 @@
 
 <html>
 <head>
-    <title>Xartesus - 404 Product not found </title>
+    <title>Xartesus - Product not found </title>
     <jsp:include page="HeaderTemp.jsp"/>
 </head>
 <body>
@@ -24,8 +24,9 @@
 <div class="row">
     <div class="col-xl my-3">
         <div class="d-flex flex-column justify-content-center">
-
-            <h1> 404 Product not found</h1>
+            <div>
+                <h1> Product not found</h1>
+            </div>
         </div>
     </div>
 </div>
